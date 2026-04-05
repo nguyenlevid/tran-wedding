@@ -3,6 +3,12 @@ import { ViteImageOptimizer } from 'vite-plugin-image-optimizer';
 
 export default defineConfig({
   base: './',
+  server: {
+    proxy: {
+      '/api':   'http://localhost:3001',
+      '/admin': 'http://localhost:3001',
+    },
+  },
   build: {
     outDir: 'dist',
     assetsInlineLimit: 4096,

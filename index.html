@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Save the Date — Tran &amp; Adam · 09.07.2026</title>
+  <title>Save the Date — Tran &amp; Adam</title>
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -24,19 +24,33 @@
 
   <!-- ═══════════ ENVELOPE SCENE ═══════════ -->
   <section id="envelope-scene" class="scene">
-    <!--
-      The entire flap-unit (flap + stamp + hint) sweeps upward
-      as one piece when the user taps — reveals the invitation below.
-    -->
     <div id="env-flap-unit" class="env-flap-unit">
       <img id="env-flap-img" class="env-flap-img" src="/flap.png" alt="" aria-hidden="true" />
       <button id="env-stamp" class="env-stamp" aria-label="Open invitation">
         <img src="/stamp.png" alt="Tap to open" />
       </button>
-      <!-- Envelope text — sweeps up with the flap on open -->
       <div class="env-text">
         <p class="env-invite-from">You Have an Invitation from</p>
         <p class="env-invite-names">Tran &amp; Adam</p>
+      </div>
+    </div>
+
+    <!-- ── Location selection overlay ── -->
+    <div id="location-overlay" class="location-overlay">
+      <div class="location-card">
+        <p class="location-card-question">Where are you joining us?</p>
+        <div class="location-choices">
+          <button class="location-choice-btn" data-loc="vietnam">
+            <span class="location-choice-flag">🇻🇳</span>
+            <span class="location-choice-name">Vietnam</span>
+            <span class="location-choice-date">09 · 07 · 2026</span>
+          </button>
+          <button class="location-choice-btn" data-loc="hungary">
+            <span class="location-choice-flag">🇭🇺</span>
+            <span class="location-choice-name">Hungary</span>
+            <span class="location-choice-date">18 · 07 · 2026</span>
+          </button>
+        </div>
       </div>
     </div>
   </section>
@@ -47,17 +61,12 @@
     <!-- ── 1. HERO ─────────────────────────────────────────── -->
     <section class="inv-hero">
       <div class="inv-hero-content">
-        <!-- The Seasons display font — tracked uppercase headline -->
         <p class="inv-save-date">Save the Date</p>
-
-        <!-- Names stacked on three lines for visual drama -->
         <div class="inv-names-stack">
           <span class="inv-name inv-name-1">Tran</span>
           <span class="inv-amp">&amp;</span>
           <span class="inv-name inv-name-2">Adam</span>
         </div>
-
-        <!-- Plain date — no box, no border -->
         <p class="inv-date-plain">09 · 07 · 2026</p>
       </div>
       <div class="scroll-indicator">
@@ -65,41 +74,29 @@
       </div>
     </section>
 
-    <!-- ── 2. DETAILS — bg_page2.png background ───────────── -->
+    <!-- ── 2. DETAILS ─────────────────────────────────────── -->
     <section class="inv-section inv-details">
-      <!-- Italic serif quote as headline -->
       <p class="details-quote animate-on-scroll">
         hand in hand, heart to heart,<br>
         on this day our adventure starts
       </p>
-
-      <!-- Script couple names -->
       <h2 class="details-couple animate-on-scroll">Tran &amp; Adam</h2>
-      <bto class="details-invite animate-on-scroll">invite you </br>to witness and celebrate our wedding</p>
+      <p class="details-invite animate-on-scroll">invite you<br>to witness and celebrate our wedding</p>
 
-      <!-- Info blocks: Venue / Date / Time -->
       <div class="details-info">
-        <div class="detail-item animate-on-scroll">
-          <h3 class="detail-label">Venue</h3>
-          <p class="detail-value">Nha Hang Golden Phoenix</p>
-          <!-- Google Maps link -->
-          <a class="detail-map-link"
-             href="https://www.google.com/maps/search/Golden+Phoenix+Restaurant+Danang+Vietnam"
-             target="_blank" rel="noopener noreferrer">
-            📍 Đường 2 Tháng 9, Đà Nẵng
-          </a>
+        <div class="detail-item animate-on-scroll" id="detail-venue-container">
+          <!-- filled by JS after location selection -->
         </div>
         <div class="detail-item animate-on-scroll">
           <h3 class="detail-label">Date</h3>
-          <p class="detail-value">09.07.2026</p>
+          <p class="detail-value" id="detail-date-value">09.07.2026</p>
         </div>
         <div class="detail-item animate-on-scroll">
           <h3 class="detail-label">Time</h3>
-          <p class="detail-value">11:00 – 13:00</p>
+          <p class="detail-value" id="detail-time-value">11:00 – 14:00</p>
         </div>
       </div>
 
-      <!-- Save to calendar CTA -->
       <button id="save-to-cal" class="save-to-cal animate-on-scroll" aria-label="Add to calendar">
         Save the Date
       </button>
@@ -110,38 +107,17 @@
       <h2 class="section-title animate-on-scroll" style="padding-top: 3.5rem;">The Program</h2>
       <div class="program-list">
 
-        <!-- Ceremony block -->
         <div class="program-block animate-on-scroll">
-          <h3 class="program-block-title">Ceremony</h3>
-          <div class="program-items">
-            <div class="program-item">
-              <span class="program-time">11:00</span>
-              <span class="program-desc">Guest arrival</span>
-            </div>
-            <div class="program-item">
-              <span class="program-time">11:15</span>
-              <span class="program-desc">Vow ceremony</span>
-            </div>
-            <div class="program-item">
-              <span class="program-time">12:00</span>
-              <span class="program-desc">Photoshoot</span>
-            </div>
+          <h3 class="program-block-title" id="program-ceremony-title">Ceremony</h3>
+          <div class="program-items" id="program-ceremony-items">
+            <!-- filled by JS after location selection -->
           </div>
         </div>
 
-
-        <!-- Reception block -->
         <div class="program-block animate-on-scroll">
-          <h3 class="program-block-title" style="padding-top: 1rem;">Reception Lunch</h3>
-          <div class="program-items">
-            <div class="program-item">
-              <span class="program-time">12:15</span>
-              <span class="program-desc">Lunch and Toast</span>
-            </div>
-            <div class="program-item">
-              <span class="program-time">13:15</span>
-              <span class="program-desc">Farewell</span>
-            </div>
+          <h3 class="program-block-title" id="program-reception-title" style="padding-top: 1rem;">Reception Lunch</h3>
+          <div class="program-items" id="program-reception-items">
+            <!-- filled by JS after location selection -->
           </div>
         </div>
 
@@ -150,35 +126,22 @@
 
     <!-- ── 4. GALLERY — film strip + polaroid collage ─────── -->
     <section class="inv-gallery">
-
-      <!--
-        Film strip: 4 images in a dark filmstrip with sprocket holes.
-        The strip uses ::before / ::after for the hole row effect.
-      -->
       <div class="film-strip">
         <div class="film-track">
           <div class="film-frame"><img src="/grid_1.jpg" alt="" loading="lazy" /></div>
           <div class="film-frame"><img src="/grid_2.jpg" alt="" loading="lazy" /></div>
           <div class="film-frame"><img src="/grid_3.jpg" alt="" loading="lazy" /></div>
           <div class="film-frame"><img src="/grid_4.jpg" alt="" loading="lazy" /></div>
-          <!-- Loop a couple for seamless feel on wide screens -->
           <div class="film-frame"><img src="/grid_5.jpg" alt="" loading="lazy" /></div>
           <div class="film-frame"><img src="/grid_6.jpg" alt="" loading="lazy" /></div>
         </div>
       </div>
 
-      <!-- Full-width hero photo — plain image, no polaroid frame -->
       <div class="gallery-hero-img">
         <img src="/grid_9.jpg" alt="" loading="lazy" />
       </div>
 
-      <!--
-        Polaroid collage: overlaps the bottom of the hero image.
-        Each polaroid has --rot CSS var for its tilt angle.
-      -->
       <div class="polaroid-collage">
-
-        <!-- Row 1: The ALBUM label (left) + grid_8 (right) -->
         <div class="polaro-label polaro-label--album" style="align-items: flex-start;">
           <span class="label-script">The</span>
           <span class="label-caps">ALBUM</span>
@@ -186,8 +149,6 @@
         <div class="polaroid" style="--rot: 9deg; position: relative; z-index: 2;">
           <img src="/grid_8.jpg" alt="" loading="lazy" />
         </div>
-
-        <!-- Row 2: grid_10 (left) + OF LOVE (right) -->
         <div class="polaroid" style="--rot: -12deg; margin-top: -70px;">
           <img src="/grid_10.jpg" alt="" loading="lazy" />
         </div>
@@ -195,7 +156,6 @@
           <span class="label-caps">Of</span>
           <span class="label-script">Love</span>
         </div>
-
       </div>
     </section>
 
@@ -203,19 +163,63 @@
     <section class="inv-section inv-countdown-section">
       <p class="countdown-eyebrow animate-on-scroll">Until we say "I Do"</p>
       <div id="countdown" class="countdown animate-on-scroll"></div>
-      <p class="countdown-bottom-date animate-on-scroll">09 · 07 · 2026</p>
+      <p class="countdown-bottom-date animate-on-scroll" id="countdown-date-display">09 · 07 · 2026</p>
     </section>
 
-    <!-- ── 6. THANK YOU FOOTER ────────────────────────────── -->
+    <!-- ── 6. RSVP ────────────────────────────────────────── -->
+    <section class="inv-section inv-rsvp">
+      <h2 class="section-title animate-on-scroll">RSVP</h2>
+
+      <form id="rsvp-form" class="rsvp-form" novalidate>
+
+        <div class="rsvp-field">
+          <label class="rsvp-label" for="rsvp-name">Your Name</label>
+          <input type="text" id="rsvp-name" class="rsvp-input" placeholder="Your name" autocomplete="name" />
+        </div>
+
+        <div class="rsvp-field">
+          <label class="rsvp-label" for="rsvp-message">Leave a Wish</label>
+          <textarea id="rsvp-message" class="rsvp-textarea" rows="4" placeholder="Write a message for the couple…"></textarea>
+        </div>
+
+        <div class="rsvp-field">
+          <label class="rsvp-label">Will you attend the ceremony?</label>
+          <div class="rsvp-toggle">
+            <button type="button" class="rsvp-toggle-btn" data-field="ceremony" data-val="yes">Joyfully accepts</button>
+            <button type="button" class="rsvp-toggle-btn" data-field="ceremony" data-val="no">Regretfully declines</button>
+          </div>
+        </div>
+
+        <!-- Hungary only -->
+        <div class="rsvp-field hidden" id="rsvp-dinner-field">
+          <label class="rsvp-label">Will you attend the dinner?</label>
+          <div class="rsvp-toggle">
+            <button type="button" class="rsvp-toggle-btn" data-field="dinner" data-val="yes">Joyfully accepts</button>
+            <button type="button" class="rsvp-toggle-btn" data-field="dinner" data-val="no">Regretfully declines</button>
+          </div>
+        </div>
+
+        <div class="rsvp-field hidden" id="rsvp-extra-field">
+          <label class="rsvp-label" for="rsvp-extra">Extra guest?</label>
+          <input type="number" id="rsvp-extra" class="rsvp-input rsvp-input--small" min="0" max="10" value="0" />
+        </div>
+
+        <button type="submit" class="rsvp-submit">Send with Love</button>
+
+      </form>
+      <p class="rsvp-feedback hidden" id="rsvp-feedback"></p>
+    </section>
+
+    <!-- ── 7. THANK YOU FOOTER ────────────────────────────── -->
     <section class="inv-footer">
       <div class="thankyou-content">
-        <p class="thankyou-label animate-on-scroll">Thank You</p>
-        <h2 class="thankyou-names animate-on-scroll">Tran &amp; Adam</h2>
-        <p class="thankyou-text animate-on-scroll">
+        <p class="thankyou-label">Thank You</p>
+        <h2 class="thankyou-names">Tran &amp; Adam</h2>
+        <p class="thankyou-text">
           for being part of our love story.<br>
           We cannot wait to celebrate with you.
         </p>
-        <p class="thankyou-date animate-on-scroll">09 · 07 · 2026</p>
+        <p class="thankyou-date" id="footer-date">09 · 07 · 2026</p>
       </div>
     </section>
 

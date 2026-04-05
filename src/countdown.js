@@ -1,7 +1,6 @@
-/** Live countdown to the wedding date: 09.07.2026 (July 9, 2026) */
-const WEDDING_DATE = new Date('2026-07-09T11:00:00');
-
-export function startCountdown() {
+/** Live countdown — targetDate defaults to Vietnam date if not provided */
+export function startCountdown(targetDate) {
+  const WEDDING_DATE = targetDate instanceof Date ? targetDate : new Date('2026-07-09T11:00:00');
   const container = document.getElementById('countdown');
   if (!container) return;
 
